@@ -1,0 +1,248 @@
+:root {
+    --bs-primary: #1E6091;
+    --bs-secondary: #0A8754;
+    --bs-info: #E7F5FF;
+    --bs-dark: #173753;
+    --bs-warning: #FF9D00;
+}
+
+body {
+    background-color: var(--bs-info);
+    color: var(--bs-dark);
+}
+
+.bg-primary {
+    background-color: var(--bs-primary) !important;
+}
+
+.bg-gradient-primary {
+    background: linear-gradient(to right, var(--bs-primary), var(--bs-dark));
+}
+
+.text-warning {
+    color: var(--bs-warning) !important;
+}
+
+.btn-warning {
+    background-color: var(--bs-warning);
+    border-color: var(--bs-warning);
+    color: var(--bs-dark);
+}
+
+.btn-warning:hover {
+    background-color: #FFB340;
+    border-color: #FFB340;
+    color: var(--bs-dark);
+}
+
+.hero {
+    background: linear-gradient(rgba(13, 110, 253, 0.7), rgba(11, 60, 134, 0.8)), url('/api/placeholder/1200/600') center/cover no-repeat;
+    padding: 100px 0;
+    color: white;
+}
+
+.feature-icon {
+    background-color: var(--bs-info);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    color: var(--bs-primary);
+    font-size: 2rem;
+}
+
+.feature-card {
+    transition: transform 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.step-number {
+    background-color: var(--bs-primary);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.testimonial-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 1rem;
+}
+
+.pricing-card {
+    transition: transform 0.3s;
+}
+
+.pricing-card:hover {
+    transform: translateY(-5px);
+}
+
+.pricing-card.highlighted {
+    background-color: var(--bs-primary);
+    color: white;
+    transform: scale(1.05);
+}
+
+.pricing-card.highlighted:hover {
+    transform: scale(1.05) translateY(-5px);
+}
+
+.pricing-card.highlighted .price {
+    color: var(--bs-warning);
+}
+
+.pricing-card.highlighted .btn-warning {
+    background-color: white;
+    color: var(--bs-primary);
+    border-color: white;
+}
+
+.price {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--bs-primary);
+}
+
+.plan-features li::before {
+    content: '✓';
+    color: var(--bs-secondary);
+    position: absolute;
+    left: 0;
+}
+
+.pricing-card.highlighted .plan-features li::before {
+    color: var(--bs-warning);
+}
+
+.social-link {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+}
+
+.social-link:hover {
+    background-color: var(--bs-warning);
+}
+
+.section-title {
+    position: relative;
+    margin-bottom: 3rem;
+    color: var(--bs-primary);
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -10px;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: var(--bs-warning);
+}
+
+/* Login Modal Styles */
+.modal-header {
+    background-color: var(--bs-primary);
+    color: white;
+    border-bottom: 3px solid var(--bs-warning);
+}
+
+.modal-title {
+    font-weight: bold;
+}
+
+.btn-close {
+    background-color: white;
+}
+
+.login-icon {
+    font-size: 1.2rem;
+    margin-right: 0.5rem;
+}
+
+.login-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.register-divider {
+    position: relative;
+    text-align: center;
+    margin: 1.5rem 0;
+}
+
+.register-divider::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 45%;
+    height: 1px;
+    background-color: #dee2e6;
+}
+
+.register-divider::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 45%;
+    height: 1px;
+    background-color: #dee2e6;
+}
+
+.register-divider span {
+    background-color: white;
+    padding: 0 15px;
+    position: relative;
+    z-index: 1;
+}
+
+.social-login {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.social-login-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #f8f9fa;
+    color: var(--bs-dark);
+    font-size: 1.2rem;
+    transition: all 0.3s;
+}
+
+.social-login-btn:hover {
+    background-color: var(--bs-warning);
+    color: white;
+}
