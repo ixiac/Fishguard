@@ -4,6 +4,9 @@
     --bs-info: #E7F5FF;
     --bs-dark: #173753;
     --bs-warning: #FF9D00;
+    --bs-warning-hover: #FFB340;
+    --bs-white: #ffffff;
+    --bs-light-gray: #dee2e6;
 }
 
 body {
@@ -30,15 +33,15 @@ body {
 }
 
 .btn-warning:hover {
-    background-color: #FFB340;
-    border-color: #FFB340;
+    background-color: var(--bs-warning-hover);
+    border-color: var(--bs-warning-hover);
     color: var(--bs-dark);
 }
 
 .hero {
     background: linear-gradient(rgba(13, 110, 253, 0.7), rgba(11, 60, 134, 0.8)), url('/api/placeholder/1200/600') center/cover no-repeat;
     padding: 100px 0;
-    color: white;
+    color: var(--bs-white);
 }
 
 .feature-icon {
@@ -202,7 +205,7 @@ body {
     top: 50%;
     width: 45%;
     height: 1px;
-    background-color: #dee2e6;
+    background-color: var(--bs-light-gray);
 }
 
 .register-divider::after {
@@ -212,7 +215,7 @@ body {
     top: 50%;
     width: 45%;
     height: 1px;
-    background-color: #dee2e6;
+    background-color: var(--bs-light-gray);
 }
 
 .register-divider span {
@@ -230,13 +233,7 @@ body {
 }
 
 .social-login-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: #f8f9fa;
+    background-color: var(--bs-white);
     color: var(--bs-dark);
     font-size: 1.2rem;
     transition: all 0.3s;
@@ -244,5 +241,5 @@ body {
 
 .social-login-btn:hover {
     background-color: var(--bs-warning);
-    color: white;
+    color: var(--bs-white);
 }
