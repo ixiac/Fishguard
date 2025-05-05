@@ -23,11 +23,12 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"] != 1) {
 
     <div class="container-fluid">
         <div class="row">
-                            <?php include 'layouts/sidebar.php'; ?>
-            
+            <?php include 'layouts/sidebar.php'; ?>
+
             <!-- Main Content -->
             <main id="content" class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <div
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="h2">Users</h1>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserModal">
                         Add New User
@@ -39,20 +40,27 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"] != 1) {
                     <div class="card-header ps-3">
                         <ul class="nav nav-tabs card-header-tabs" id="userTabs" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="all-tab" data-bs-toggle="tab" data-bs-target="#all" type="button" role="tab" aria-controls="all" aria-selected="true">All Accounts</button>
+                                <button class="nav-link active" id="all-tab" data-bs-toggle="tab" data-bs-target="#all"
+                                    type="button" role="tab" aria-controls="all" aria-selected="true">All
+                                    Accounts</button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="admins-tab" data-bs-toggle="tab" data-bs-target="#admins" type="button" role="tab" aria-controls="admins" aria-selected="false">Admins</button>
+                                <button class="nav-link" id="admins-tab" data-bs-toggle="tab" data-bs-target="#admins"
+                                    type="button" role="tab" aria-controls="admins"
+                                    aria-selected="false">Admins</button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="customers-tab" data-bs-toggle="tab" data-bs-target="#customers" type="button" role="tab" aria-controls="customers" aria-selected="false">Customers</button>
+                                <button class="nav-link" id="customers-tab" data-bs-toggle="tab"
+                                    data-bs-target="#customers" type="button" role="tab" aria-controls="customers"
+                                    aria-selected="false">Fishermen</button>
                             </li>
                         </ul>
                     </div>
                     <div class="card-body">
                         <div class="tab-content" id="userTabsContent">
                             <!-- All Accounts Tab -->
-                            <div class="tab-pane fade show active mt-4" id="all" role="tabpanel" aria-labelledby="all-tab">
+                            <div class="tab-pane fade show active mt-4" id="all" role="tabpanel"
+                                aria-labelledby="all-tab">
                                 <div class="table-responsive">
                                     <table id="allUsersTable" class="table table-striped table-bordered align-middle">
                                         <thead>
@@ -78,7 +86,7 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"] != 1) {
                                                             <td>{$row['name']}</td>
                                                             <td>{$row['address']}</td>
                                                             <td>{$row['contact_no']}</td>
-                                                            <td>" . ($row['role'] == 1 ? 'Admin' : 'Customer') . "</td>
+                                                            <td>" . ($row['role'] == 1 ? 'Admin' : 'Fisherman') . "</td>
                                                             <td>
                                                                 <button type='button' class='btn btn-link btn-sm text-primary' title='Edit' data-bs-toggle='modal' data-bs-target='#editUserModal' 
                                                                     data-uid='{$row['UID']}' 
@@ -204,19 +212,22 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"] != 1) {
                 <!-- End Tab Content -->
 
                 <!-- Edit User Modal -->
-                <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
+                <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel"
+                    aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <form id="editUserForm" action="modal/update_user.php" method="POST">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="editUserModalLabel">Edit User</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                     <input type="hidden" name="uid" id="editUserId">
                                     <div class="mb-3">
                                         <label for="editUsername" class="form-label">Username</label>
-                                        <input type="text" class="form-control" id="editUsername" name="username" required>
+                                        <input type="text" class="form-control" id="editUsername" name="username"
+                                            required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="editName" class="form-label">Name</label>
@@ -224,15 +235,18 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"] != 1) {
                                     </div>
                                     <div class="mb-3">
                                         <label for="editAddress" class="form-label">Address</label>
-                                        <input type="text" class="form-control" id="editAddress" name="address" required>
+                                        <input type="text" class="form-control" id="editAddress" name="address"
+                                            required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="editContact" class="form-label">Contact No</label>
-                                        <input type="text" class="form-control" id="editContact" name="contact_no" required>
+                                        <input type="text" class="form-control" id="editContact" name="contact_no"
+                                            required>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
                                     <button type="submit" class="btn btn-primary">Save Changes</button>
                                 </div>
                             </form>
@@ -241,41 +255,54 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"] != 1) {
                 </div>
 
                 <!-- Add User Modal -->
-                <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
+                <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel"
+                    aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <form id="addUserForm" action="modal/add_user.php" method="POST">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="addUserModalLabel">Add New User</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                     <div class="mb-3">
                                         <label for="addUsername" class="form-label">Username</label>
-                                        <input type="text" class="form-control" id="addUsername" name="username" required>
+                                        <input type="text" class="form-control" id="addUsername" name="username"
+                                            required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="addPassword" class="form-label">Password</label>
+                                        <input type="password" class="form-control" id="addPassword" name="password"
+                                            required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="addName" class="form-label">Name</label>
                                         <input type="text" class="form-control" id="addName" name="name" required>
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="addAddress" class="form-label">Address</label>
-                                        <input type="text" class="form-control" id="addAddress" name="address" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="addContact" class="form-label">Contact No</label>
-                                        <input type="text" class="form-control" id="addContact" name="contact_no" required>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="addAddress" class="form-label">Address</label>
+                                            <input type="text" class="form-control" id="addAddress" name="address"
+                                                required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="addContact" class="form-label">Contact No</label>
+                                            <input type="text" class="form-control" id="addContact" name="contact_no"
+                                                required>
+                                        </div>
                                     </div>
                                     <div class="mb-3">
                                         <label for="addRole" class="form-label">Role</label>
                                         <select class="form-select" id="addRole" name="role" required>
                                             <option value="1">Admin</option>
-                                            <option value="0">Customer</option>
+                                            <option value="0">Fisherman</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
                                     <button type="submit" class="btn btn-primary">Add User</button>
                                 </div>
                             </form>
@@ -400,42 +427,40 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"] != 1) {
                     method: 'POST',
                     body: formData
                 })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    if (data.success) {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Success',
-                            text: 'User updated successfully!',
-                            confirmButtonText: 'OK'
-                        }).then(() => {
-                            location.reload();
-                        });
-                    } else {
-                        // Use SweetAlert for error
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
                         Swal.fire({
                             icon: 'error',
-                            title: 'Error',
-                            text: data.message || 'Error updating user.',
+                            title: 'Unexpected Error',
+                            text: 'An unexpected error occurred. Please check the console for details.',
                             confirmButtonText: 'OK'
                         });
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    // Use SweetAlert for unexpected errors
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Unexpected Error',
-                        text: error.message || 'An unexpected error occurred.',
-                        confirmButtonText: 'OK'
+                    })
+                    .then(data => {
+                        if (data && data.success) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success',
+                                text: 'User updated successfully!',
+                                confirmButtonText: 'OK'
+                            }).then(() => {
+                                location.reload();
+                            });
+                        } else if (data) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: data.message || 'Error updating user.',
+                                confirmButtonText: 'OK'
+                            });
+                        }
                     });
-                });
             });
 
             // Handle add user form submission
@@ -449,40 +474,40 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"] != 1) {
                     method: 'POST',
                     body: formData
                 })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    if (data.success) {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Success',
-                            text: 'User added successfully!',
-                            confirmButtonText: 'OK'
-                        }).then(() => {
-                            location.reload();
-                        });
-                    } else {
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.success) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success',
+                                text: 'User added successfully!',
+                                confirmButtonText: 'OK'
+                            }).then(() => {
+                                location.reload();
+                            });
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: data.message || 'Error adding user.',
+                                confirmButtonText: 'OK'
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
                         Swal.fire({
                             icon: 'error',
-                            title: 'Error',
-                            text: data.message || 'Error adding user.',
+                            title: 'Unexpected Error',
+                            text: error.message || 'An unexpected error occurred.',
                             confirmButtonText: 'OK'
                         });
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Unexpected Error',
-                        text: error.message || 'An unexpected error occurred.',
-                        confirmButtonText: 'OK'
                     });
-                });
             });
 
             // Handle delete user button click
@@ -505,40 +530,40 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"] != 1) {
                             fetch(`modal/delete_user.php?id=${userId}`, {
                                 method: 'GET'
                             })
-                            .then(response => {
-                                if (!response.ok) {
-                                    throw new Error('Network response was not ok');
-                                }
-                                return response.json();
-                            })
-                            .then(data => {
-                                if (data.success) {
-                                    Swal.fire({
-                                        icon: 'success',
-                                        title: 'Deleted!',
-                                        text: 'The user has been deleted.',
-                                        confirmButtonText: 'OK'
-                                    }).then(() => {
-                                        location.reload(); // Reload the page to reflect changes
-                                    });
-                                } else {
+                                .then(response => {
+                                    if (!response.ok) {
+                                        throw new Error('Network response was not ok');
+                                    }
+                                    return response.json();
+                                })
+                                .then(data => {
+                                    if (data.success) {
+                                        Swal.fire({
+                                            icon: 'success',
+                                            title: 'Deleted!',
+                                            text: 'The user has been deleted.',
+                                            confirmButtonText: 'OK'
+                                        }).then(() => {
+                                            location.reload(); // Reload the page to reflect changes
+                                        });
+                                    } else {
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: 'Error',
+                                            text: data.message || 'Failed to delete the user.',
+                                            confirmButtonText: 'OK'
+                                        });
+                                    }
+                                })
+                                .catch(error => {
+                                    console.error('Error:', error);
                                     Swal.fire({
                                         icon: 'error',
-                                        title: 'Error',
-                                        text: data.message || 'Failed to delete the user.',
+                                        title: 'Unexpected Error',
+                                        text: error.message || 'An unexpected error occurred.',
                                         confirmButtonText: 'OK'
                                     });
-                                }
-                            })
-                            .catch(error => {
-                                console.error('Error:', error);
-                                Swal.fire({
-                                    icon: 'error',
-                                    title: 'Unexpected Error',
-                                    text: error.message || 'An unexpected error occurred.',
-                                    confirmButtonText: 'OK'
                                 });
-                            });
                         }
                     });
                 });

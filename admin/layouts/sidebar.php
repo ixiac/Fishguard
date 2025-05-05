@@ -35,6 +35,11 @@ $active = basename($_SERVER['PHP_SELF']);
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link <?php echo $active == 'violations.php' ? 'active' : ''; ?>" href="violations.php">
+                    <i class="bi bi-shield-fill-exclamation"></i> Violations
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link <?php echo $active == 'analytics.php' ? 'active' : ''; ?>" href="analytics.php">
                     <i class="bi bi-graph-up-arrow"></i> Analytics
                 </a>

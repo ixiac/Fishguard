@@ -7,8 +7,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $address = mysqli_real_escape_string($conn, $_POST['address']);
     $contact_no = mysqli_real_escape_string($conn, $_POST['contact_no']);
     $role = intval($_POST['role']);
+    $password = password_hash(mysqli_real_escape_string($conn, $_POST['password']), PASSWORD_BCRYPT);
 
-    $query = "INSERT INTO users (username, name, address, contact_no, role) VALUES ('$username', '$name', '$address', '$contact_no', $role)";
+    $query = "INSERT INTO users (username, name, address, contact_no, role, password) VALUES ('$username', '$name', '$address', '$contact_no', $role, '$password')";
     if (mysqli_query($conn, $query)) {
         echo json_encode(['success' => true]);
     } else {
