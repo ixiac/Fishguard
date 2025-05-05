@@ -21,11 +21,12 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"] != 1) {
 
     <div class="container-fluid">
         <div class="row">
-                            <?php include 'layouts/sidebar.php'; ?>
-            
+            <?php include 'layouts/sidebar.php'; ?>
+
             <!-- Main Content -->
             <main id="content" class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <div
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="h2">Blank</h1>
                     <div class="btn-toolbar mb-2 mb-md-0">
                         <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
@@ -35,7 +36,7 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"] != 1) {
                 </div>
 
                 <!-- New Container -->
-                <div style="min-height: 505px;">
+                <div style="min-height: 505px;">F
                     <!-- Add your content here -->
                 </div>
 
