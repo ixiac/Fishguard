@@ -1,3 +1,41 @@
+<?php
+require_once 'assets/db.php';
+
+// Handle login form submission
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username"], $_POST["password"])) {
+    $inputUsername = $conn->real_escape_string($_POST["username"]);
+    $inputPassword = $conn->real_escape_string($_POST["password"]);
+
+    $sql = "SELECT * FROM users WHERE username = '$inputUsername'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        $user = $result->fetch_assoc();
+        if (password_verify($inputPassword, $user["password"])) {
+            // Start session and store user data
+            session_start();
+            $_SESSION["UID"] = $user["UID"];
+            $_SESSION["username"] = $user["username"];
+            $_SESSION["name"] = $user["name"];
+            $_SESSION["role"] = $user["role"];
+
+            // Redirect based on role
+            if ($user["role"] == 1) {
+                header("Location: admin/dashboard.php");
+            } elseif ($user["role"] == 2) {
+                header("Location: users/dashboard.php");
+            } else {
+                $loginError = "Unauthorized role.";
+            }
+            exit();
+        } else {
+            $loginError = "Invalid password.";
+        }
+    } else {
+        $loginError = "User not found.";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,28 +47,25 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css">
-    <style>
 
-    </style>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/index.css">
 </head>
 
 <body>
     <!-- Header -->
     <header class="sticky-top">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-gradient-primary">
+        <nav class="navbar navbar-expand-lg shadow" style="background-color: #fbfbfb;">
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center" href="#">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="me-2">
-                        <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20Z" fill="#FF9D00" />
-                        <path d="M12 17C14.7614 17 17 14.7614 17 12C17 9.23858 14.7614 7 12 7C9.23858 7 7 9.23858 7 12C7 14.7614 9.23858 17 12 17Z" fill="#FF9D00" />
-                    </svg>
-                    Fish<span class="text-warning">Guard</span>
+                    <img src="assets/img/navlogo.png" alt="FishGuard Logo" width="50" height="50" class="me-2">
+                    <span class="fs-4">Fish<span class="text-primary">Guard</span></span>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav mx-auto">
+                    <ul class="navbar-nav mx-auto me-5">
                         <li class="nav-item">
                             <a class="nav-link" href="#features">Features</a>
                         </li>
@@ -39,9 +74,6 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#testimonials">Testimonials</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#pricing">Pricing</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#contact">Contact</a>
@@ -64,12 +96,15 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="login.php" method="POST">
+                    <?php if (isset($loginError)): ?>
+                        <div class="alert alert-danger"><?php echo $loginError; ?></div>
+                    <?php endif; ?>
+                    <form action="" method="POST">
                         <div class="mb-3">
-                            <label for="loginEmail" class="form-label">Email address</label>
+                            <label for="loginUsername" class="form-label">Username</label>
                             <div class="input-group">
-                                <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-                                <input type="email" class="form-control" id="loginEmail" name="email" placeholder="name@example.com" required>
+                                <span class="input-group-text"><i class="bi bi-person"></i></span>
+                                <input type="text" class="form-control" id="loginUsername" name="username" placeholder="Enter your username" required>
                             </div>
                         </div>
                         <div class="mb-3">
@@ -186,7 +221,7 @@
                 <div class="col-lg-8">
                     <h1 class="display-4 mb-4">Simplify Fishing Compliance with FishGuard</h1>
                     <p class="lead mb-5">The all-in-one solution for anglers and regulatory agencies to monitor, manage, and maintain sustainable fishing practices.</p>
-                    <button class="btn btn-warning btn-lg px-5 fw-bold">Learn More</button>
+                    <button class="btn btn-warning btn-lg px-5 fw-bold">Get Started</button>
                 </div>
             </div>
         </div>
@@ -205,8 +240,8 @@
                             <div class="feature-icon">
                                 <i class="bi bi-check-circle-fill"></i>
                             </div>
-                            <h3 class="h4 text-primary mb-3">Real-time Regulation Updates</h3>
-                            <p class="card-text">Stay compliant with automatic updates on fishing regulations specific to your location and target species.</p>
+                            <h3 class="h4 text-primary mb-3">Lorem ipsum dolor sit amet</h3>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                         </div>
                     </div>
                 </div>
@@ -216,8 +251,8 @@
                             <div class="feature-icon">
                                 <i class="bi bi-geo-alt-fill"></i>
                             </div>
-                            <h3 class="h4 text-primary mb-3">GPS-Based Boundary Alerts</h3>
-                            <p class="card-text">Receive alerts when approaching protected areas or when crossing into zones with different regulations.</p>
+                            <h3 class="h4 text-primary mb-3">Lorem ipsum dolor sit amet</h3>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                         </div>
                     </div>
                 </div>
@@ -227,8 +262,8 @@
                             <div class="feature-icon">
                                 <i class="bi bi-bar-chart-fill"></i>
                             </div>
-                            <h3 class="h4 text-primary mb-3">Catch Tracking & Reporting</h3>
-                            <p class="card-text">Easily log catches, track quotas, and generate reports for regulatory compliance or personal records.</p>
+                            <h3 class="h4 text-primary mb-3">Lorem ipsum dolor sit amet</h3>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                         </div>
                     </div>
                 </div>
@@ -246,29 +281,29 @@
                 <div class="col-md-3">
                     <div class="d-flex flex-column align-items-center">
                         <div class="step-number">1</div>
-                        <h3 class="h5 mb-3">Download & Register</h3>
-                        <p>Create your FishGuard account and set up your profile with your fishing preferences and location.</p>
+                        <h3 class="h5 mb-3">Lorem ipsum dolor sit amet</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="d-flex flex-column align-items-center">
                         <div class="step-number">2</div>
-                        <h3 class="h5 mb-3">Access Regulations</h3>
-                        <p>Get instant access to fishing regulations tailored to your location, target species, and season.</p>
+                        <h3 class="h5 mb-3">Lorem ipsum dolor sit amet</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="d-flex flex-column align-items-center">
                         <div class="step-number">3</div>
-                        <h3 class="h5 mb-3">Track & Report</h3>
-                        <p>Log your catches, monitor your quotas, and generate compliance reports with a few taps.</p>
+                        <h3 class="h5 mb-3">Lorem ipsum dolor sit amet</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="d-flex flex-column align-items-center">
                         <div class="step-number">4</div>
-                        <h3 class="h5 mb-3">Stay Compliant</h3>
-                        <p>Receive alerts and notifications to ensure you're always fishing within regulations.</p>
+                        <h3 class="h5 mb-3">Lorem ipsum dolor sit amet</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                     </div>
                 </div>
             </div>
@@ -276,7 +311,7 @@
     </section>
 
     <!-- Testimonials Section -->
-    <section id="testimonials" class="py-5 bg-info">
+    <section id="testimonials" class="py-5">
         <div class="container text-center">
             <div class="section-title">
                 <h2>What Anglers Are Saying</h2>
@@ -285,7 +320,7 @@
                 <div class="col-lg-4">
                     <div class="card h-100 shadow">
                         <div class="card-body p-4">
-                            <p class="card-text fst-italic mb-4">"FishGuard has completely transformed how I approach fishing. No more worrying about accidentally breaking regulations or carrying bulky guidebooks. Everything I need is right in the app!"</p>
+                            <p class="card-text fst-italic mb-4">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
                             <div class="d-flex align-items-center">
                                 <div class="testimonial-avatar">
                                     <img src="/api/placeholder/50/50" alt="James Wilson" class="img-fluid">
@@ -301,7 +336,7 @@
                 <div class="col-lg-4">
                     <div class="card h-100 shadow">
                         <div class="card-body p-4">
-                            <p class="card-text fst-italic mb-4">"As a fishing charter operator, compliance is critical to our business. FishGuard's reporting features save me hours of paperwork and keep us fully compliant with ever-changing regulations."</p>
+                            <p class="card-text fst-italic mb-4">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
                             <div class="d-flex align-items-center">
                                 <div class="testimonial-avatar">
                                     <img src="/api/placeholder/50/50" alt="Maria Rodriguez" class="img-fluid">
@@ -317,7 +352,7 @@
                 <div class="col-lg-4">
                     <div class="card h-100 shadow">
                         <div class="card-body p-4">
-                            <p class="card-text fst-italic mb-4">"Implementation of FishGuard in our region has led to better compliance rates and more sustainable fishing practices. A valuable tool for conservation efforts."</p>
+                            <p class="card-text fst-italic mb-4">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
                             <div class="d-flex align-items-center">
                                 <div class="testimonial-avatar">
                                     <img src="/api/placeholder/50/50" alt="Dr. Robert Chen" class="img-fluid">
@@ -334,71 +369,8 @@
         </div>
     </section>
 
-    <!-- Pricing Section -->
-    <section id="pricing" class="py-5 bg-white">
-        <div class="container text-center">
-            <div class="section-title">
-                <h2>Pricing Plans</h2>
-            </div>
-            <div class="row g-4">
-                <div class="col-lg-4">
-                    <div class="card h-100 shadow pricing-card">
-                        <div class="card-body p-4">
-                            <h3 class="h4 mb-3">Basic</h3>
-                            <div class="price mb-3">$4.99<span class="h6">/month</span></div>
-                            <p class="mb-4">Perfect for casual anglers</p>
-                            <ul class="list-unstyled plan-features mb-4 text-start ps-4 position-relative">
-                                <li class="mb-2 position-relative ps-4">Basic regulation updates</li>
-                                <li class="mb-2 position-relative ps-4">GPS boundary alerts</li>
-                                <li class="mb-2 position-relative ps-4">Catch logging</li>
-                                <li class="mb-2 position-relative ps-4">Species identification</li>
-                            </ul>
-                            <button class="btn btn-warning fw-bold w-100">Choose Plan</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="card h-100 shadow pricing-card highlighted">
-                        <div class="card-body p-4">
-                            <h3 class="h4 mb-3">Premium</h3>
-                            <div class="price mb-3">$9.99<span class="h6">/month</span></div>
-                            <p class="mb-4">Ideal for serious fishermen</p>
-                            <ul class="list-unstyled plan-features mb-4 text-start ps-4 position-relative">
-                                <li class="mb-2 position-relative ps-4">Real-time regulation updates</li>
-                                <li class="mb-2 position-relative ps-4">Advanced GPS features</li>
-                                <li class="mb-2 position-relative ps-4">Unlimited catch logging</li>
-                                <li class="mb-2 position-relative ps-4">Compliance reporting</li>
-                                <li class="mb-2 position-relative ps-4">Weather integration</li>
-                                <li class="mb-2 position-relative ps-4">Trip planning tools</li>
-                            </ul>
-                            <button class="btn btn-warning fw-bold w-100">Choose Plan</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="card h-100 shadow pricing-card">
-                        <div class="card-body p-4">
-                            <h3 class="h4 mb-3">Enterprise</h3>
-                            <div class="price mb-3">Custom</div>
-                            <p class="mb-4">For commercial operations</p>
-                            <ul class="list-unstyled plan-features mb-4 text-start ps-4 position-relative">
-                                <li class="mb-2 position-relative ps-4">All Premium features</li>
-                                <li class="mb-2 position-relative ps-4">Multi-user accounts</li>
-                                <li class="mb-2 position-relative ps-4">API access</li>
-                                <li class="mb-2 position-relative ps-4">Custom reporting</li>
-                                <li class="mb-2 position-relative ps-4">Dedicated support</li>
-                                <li class="mb-2 position-relative ps-4">Training sessions</li>
-                            </ul>
-                            <button class="btn btn-warning fw-bold w-100">Contact Sales</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Contact Section -->
-    <section id="contact" class="py-5 bg-info">
+    <section id="contact" class="py-5 bg-white">
         <div class="container">
             <div class="section-title text-center">
                 <h2>Get In Touch</h2>
@@ -438,7 +410,7 @@
             <div class="row g-4">
                 <div class="col-lg-4">
                     <h3 class="h5 text-warning mb-3">FishGuard</h3>
-                    <p class="mb-4">Simplifying fishing compliance and conservation through innovative technology.</p>
+                    <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                     <div class="d-flex gap-2">
                         <a href="#" class="social-link">
                             <i class="bi bi-google"></i>
@@ -488,7 +460,7 @@
                 </div>
             </div>
             <hr class="my-4 bg-light opacity-25">
-            <div class="text-center">
+            <div class="text-center"></div></div>
                 <p class="mb-0">&copy; 2025 FishGuard. All rights reserved.</p>
             </div>
         </div>
@@ -534,3 +506,4 @@
 </body>
 
 </html>
+
