@@ -81,7 +81,7 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"] != 1) {
                                                             <td>{$row['name']}</td>
                                                             <td>{$row['catch_limit']}</td>
                                                             <td>" . ($row['is_available'] ? 'Yes' : 'No') . "</td>
-                                                            <td>" . number_format($row['fine_rate'], 2, '.', ',') . " PHP</td>
+                                                            <td>₱" . number_format($row['fine_rate'], 2, '.', ',') . "</td>
                                                             <td>{$row['endangered_level']}</td>
                                                             <td>
                                                                 <button type='button' class='btn btn-link btn-sm text-primary' title='Edit' data-bs-toggle='modal' data-bs-target='#editSpeciesModal' 

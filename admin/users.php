@@ -295,7 +295,7 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"] != 1) {
                                         <label for="addRole" class="form-label">Role</label>
                                         <select class="form-select" id="addRole" name="role" required>
                                             <option value="1">Admin</option>
-                                            <option value="0">Fisherman</option>
+                                            <option value="2">Fisherman</option>
                                         </select>
                                     </div>
                                 </div>
