@@ -26,7 +26,7 @@ $active = basename($_SERVER['PHP_SELF']);
             </li>
             <li class="nav-item">
                 <a class="nav-link <?php echo $active == 'species.php' ? 'active' : ''; ?>" href="species.php">
-                <i class="fas fa-fish"></i> Species
+                    <i class="fas fa-fish"></i> Species
                 </a>
             </li>
             <li class="nav-item">
@@ -50,8 +50,8 @@ $active = basename($_SERVER['PHP_SELF']);
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?php echo $active == 'help.php' ? 'active' : ''; ?>" href="help.php">
-                    <i class="bi bi-question-circle-fill"></i> Help
+                <a class="nav-link <?php echo $active == 'about.php' ? 'active' : ''; ?>" href="about.php">
+                    <i class="bi bi-info-circle-fill"></i> About
                 </a>
             </li>
         </ul>
