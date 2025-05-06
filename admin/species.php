@@ -31,7 +31,7 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"] != 1) {
                     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="h2">Species</h1>
                     <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#addSpeciesModal">
-                        Add New Species
+                        <i class="bi bi-plus-circle"></i> Add New Species
                     </button>
                 </div>
 

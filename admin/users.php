@@ -31,7 +31,7 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"] != 1) {
                     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="h2">Users</h1>
                     <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#addUserModal">
-                        Add New User
+                        <i class="bi bi-person-plus"></i> Add New User
                     </button>
                 </div>
 

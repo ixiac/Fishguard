@@ -127,9 +127,8 @@ $species = $conn->query("SELECT SID, name FROM species");
                 class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2">Reports</h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
-                    <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                        data-bs-target="#addReportModal">
-                        Add New Report
+                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#addReportModal">
+                        <i class="bi bi-file-earmark-plus"></i> Add New Report
                     </button>
                 </div>
             </div>
