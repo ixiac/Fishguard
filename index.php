@@ -1,7 +1,7 @@
 <?php
 require_once 'assets/db.php';
 
-// Handle login form submission
+// SECTION: Handle login form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username"], $_POST["password"])) {
     $inputUsername = $conn->real_escape_string($_POST["username"]);
     $inputPassword = $conn->real_escape_string($_POST["password"]);
@@ -12,14 +12,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username"], $_POST["pa
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
         if (password_verify($inputPassword, $user["password"])) {
-            // Start session and store user data
             session_start();
             $_SESSION["UID"] = $user["UID"];
             $_SESSION["username"] = $user["username"];
             $_SESSION["name"] = $user["name"];
             $_SESSION["role"] = $user["role"];
 
-            // Redirect based on role
             if ($user["role"] == 1) {
                 header("Location: admin/dashboard.php");
             } elseif ($user["role"] == 2) {
@@ -36,26 +34,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username"], $_POST["pa
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+    <!-- SECTION: Meta and Styles -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FishGuard - Smart Fishing Regulation System</title>
     <link rel="icon" href="assets/img/logo.png" type="image/png">
-    <!-- Bootstrap 5 CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css">
-
-    <!-- Custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="assets/css/index.css">
 </head>
-
 <body>
-    <!-- Header -->
+    <!-- SECTION: Header -->
     <header class="sticky-top">
         <nav class="navbar navbar-expand-lg shadow" style="background-color: #fbfbfb;">
             <div class="container">
@@ -89,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username"], $_POST["pa
         </nav>
     </header>
 
-    <!-- Login Modal -->
+    <!-- SECTION: Login Modal -->
     <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -145,7 +138,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username"], $_POST["pa
         </div>
     </div>
 
-    <!-- Register Modal -->
+    <!-- SECTION: Register Modal -->
     <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -225,7 +218,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username"], $_POST["pa
         </div>
     </div>
 
-    <!-- Hero Section -->
+    <!-- SECTION: Hero Section -->
     <section class="hero">
         <div class="container text-center">
             <div class="row justify-content-center">
@@ -239,7 +232,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username"], $_POST["pa
         </div>
     </section>
 
-    <!-- Features Section -->
+    <!-- SECTION: Features Section -->
     <section id="features" class="py-5">
         <div class="container text-center">
             <div class="section-title">
@@ -286,13 +279,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username"], $_POST["pa
         </div>
     </section>
 
-    <!-- How It Works Section -->
+    <!-- SECTION: How It Works Section -->
     <section id="how-it-works" class="py-5 bg-white">
         <div class="container text-center">
             <div class="section-title">
                 <h2>How It Works</h2>
             </div>
-            <div class="row g-4">
+            <div class="row g-4"></div>
                 <div class="col-md-3">
                     <div class="d-flex flex-column align-items-center">
                         <div class="step-number">1</div>
@@ -329,13 +322,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username"], $_POST["pa
         </div>
     </section>
 
-    <!-- Testimonials Section -->
+    <!-- SECTION: Testimonials Section -->
     <section id="testimonials" class="py-5">
         <div class="container text-center">
             <div class="section-title">
                 <h2>What Anglers Are Saying</h2>
             </div>
-            <div class="row g-4">
+            <div class="row g-4"></div>
                 <div class="col-lg-4">
                     <div class="card h-100 shadow">
                         <div class="card-body p-4">
@@ -391,13 +384,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username"], $_POST["pa
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- SECTION: Contact Section -->
     <section id="contact" class="py-5 bg-white">
         <div class="container">
             <div class="section-title text-center">
                 <h2>Get In Touch</h2>
             </div>
-            <div class="row justify-content-center">
+            <div class="row justify-content-center"></div>
                 <div class="col-lg-8">
                     <div class="card shadow">
                         <div class="card-body p-4">
@@ -427,7 +420,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username"], $_POST["pa
             </div>
         </div>
     </section>
-    <!-- Footer -->
+    <!-- SECTION: Footer -->
     <footer class="py-5 bg-dark text-white">
         <div class="container">
             <div class="row g-4">
@@ -493,18 +486,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username"], $_POST["pa
         </div>
     </footer>
 
-    <!-- Bootstrap 5 JS Bundle with Popper -->
+    <!-- SECTION: Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Script to handle modal switching -->
     <script>
-        // This script handles toggling between login and register modals
         document.addEventListener('DOMContentLoaded', function () {
-            // Get references to modals
             const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
             const registerModal = new bootstrap.Modal(document.getElementById('registerModal'));
 
-            // Listen for clicks on "Register Now" button in login modal
             document.querySelectorAll('[data-bs-target="#registerModal"]').forEach(button => {
                 button.addEventListener('click', function () {
                     loginModal.hide();
@@ -514,7 +502,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username"], $_POST["pa
                 });
             });
 
-            // Listen for clicks on "Login" button in register modal
             document.querySelectorAll('[data-bs-target="#loginModal"]').forEach(button => {
                 button.addEventListener('click', function () {
                     registerModal.hide();
@@ -524,12 +511,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username"], $_POST["pa
                 });
             });
 
-            // Update hero section button to open login modal
             document.querySelector('.hero .btn-warning').addEventListener('click', function () {
                 loginModal.show();
             });
         });
     </script>
 </body>
-
 </html>

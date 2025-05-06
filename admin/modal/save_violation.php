@@ -8,13 +8,12 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"] != 1) {
 require_once '../../assets/db.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $uid = $_POST['user']; // Fisherman UID
-    $sid = $_POST['species']; // Species SID
-    $date = $_POST['date']; // Ensure the raw date is passed
+    $uid = $_POST['user'];
+    $sid = $_POST['species'];
+    $date = $_POST['date'];
     $description = $_POST['description'];
     $penalty = $_POST['penalty'];
 
-    // Prepare and execute the insert query
     $stmt = $conn->prepare("INSERT INTO violations (UID, SID, date, description, penalty) VALUES (?, ?, ?, ?, ?)");
     $stmt->bind_param("iissd", $uid, $sid, $date, $description, $penalty);
 

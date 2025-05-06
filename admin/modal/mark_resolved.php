@@ -21,7 +21,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
 
     if ($stmt->execute()) {
         if ($stmt->affected_rows > 0) {
-            // Ensure the database changes are committed before sending the response
             $conn->commit();
             echo json_encode(['success' => true]);
         } else {

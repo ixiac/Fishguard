@@ -1,23 +1,21 @@
 <?php
-require_once 'assets/db.php'; // Include the database connection
+require_once 'assets/db.php';
 
-// Handle registration form submission
+// SECTION: Handle registration form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username"], $_POST["password"], $_POST["name"], $_POST["address"], $_POST["contact_no"])) {
     $username = $conn->real_escape_string($_POST["username"]);
     $password = password_hash($conn->real_escape_string($_POST["password"]), PASSWORD_BCRYPT);
     $name = $conn->real_escape_string($_POST["name"]);
     $address = $conn->real_escape_string($_POST["address"]);
     $contact_no = $conn->real_escape_string($_POST["contact_no"]);
-    $role = 2; // Default role for users
+    $role = 2;
 
-    // Check if username already exists
     $checkUserQuery = "SELECT * FROM users WHERE username = '$username'";
     $result = $conn->query($checkUserQuery);
 
     if ($result->num_rows > 0) {
         $registerError = "Username already exists.";
     } else {
-        // Insert user into the database
         $sql = "INSERT INTO users (username, password, name, address, contact_no, role) VALUES ('$username', '$password', '$name', '$address', '$contact_no', $role)";
         if ($conn->query($sql) === TRUE) {
             $registerSuccess = "Registration successful! You can now log in.";
@@ -27,9 +25,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username"], $_POST["pa
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- SECTION: Meta and Styles -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - FishGuard</title>
@@ -83,11 +83,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username"], $_POST["pa
 </head>
 <body>
     <div class="register-container">
+        <!-- SECTION: Slogan -->
         <div class="slogan">
             <img src="assets/img/logo.png" alt="FishGuard Logo">
             <h1>Join Us as a Fisherman</h1>
             <p>Become part of the FishGuard community and simplify your fishing compliance. Track your catches, stay updated on regulations, and fish sustainably with ease.</p>
         </div>
+
+        <!-- SECTION: Register Form -->
         <div class="register-form">
             <?php if (isset($registerError)): ?>
                 <div class="alert alert-danger"><?php echo $registerError; ?></div>

@@ -1,4 +1,5 @@
 <?php
+// SECTION: Logout and session cleanup
 session_start();
 session_unset();
 session_destroy();

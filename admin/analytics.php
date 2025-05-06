@@ -5,7 +5,6 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"] != 1) {
     exit();
 }
 
-// Database connection
 include '../assets/db.php';
 
 // Fetch most caught species

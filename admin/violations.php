@@ -9,55 +9,38 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"] != 1) {
 <html lang="en">
 
 <head>
-    <!-- Header -->
     <?php include 'layouts/head.php'; ?>
-
-    <!-- Custom CSS -->
     <link href="../assets/css/admindash.css" rel="stylesheet">
-    <!-- DataTables CSS -->
     <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
 </head>
 
 <body>
     <?php include 'layouts/navbar.php'; ?>
-
     <div class="container-fluid">
         <div class="row">
             <?php include 'layouts/sidebar.php'; ?>
-
-            <!-- Main Content -->
             <main id="content" class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                <div
-                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="h2">Reports and Violations</h1>
                 </div>
-
-                <!-- Reports and Violations Nav Tabs -->
                 <div class="card mt-3">
                     <div class="card-header ps-3">
                         <ul class="nav nav-tabs card-header-tabs" id="reportsViolationsTabs" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="reports-tab" data-bs-toggle="tab"
-                                    data-bs-target="#reports" type="button" role="tab" aria-controls="reports"
-                                    aria-selected="true">Reports</button>
+                                <button class="nav-link active" id="reports-tab" data-bs-toggle="tab" data-bs-target="#reports" type="button" role="tab" aria-controls="reports" aria-selected="true">Reports</button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="violations-tab" data-bs-toggle="tab"
-                                    data-bs-target="#violations" type="button" role="tab" aria-controls="violations"
-                                    aria-selected="false">Violations</button>
+                                <button class="nav-link" id="violations-tab" data-bs-toggle="tab" data-bs-target="#violations" type="button" role="tab" aria-controls="violations" aria-selected="false">Violations</button>
                             </li>
                         </ul>
                     </div>
                     <div class="card-body">
                         <div class="tab-content" id="reportsViolationsTabsContent">
-                            <!-- Reports Tab -->
-                            <div class="tab-pane fade show active mt-4" id="reports" role="tabpanel"
-                                aria-labelledby="reports-tab">
+                            <div class="tab-pane fade show active mt-4" id="reports" role="tabpanel" aria-labelledby="reports-tab">
                                 <div class="table-responsive">
                                     <table id="reportsTable" class="table table-striped table-bordered align-middle">
                                         <thead>
                                             <tr>
-                                                <!-- Removed CRID column -->
                                                 <th>Fisherman</th>
                                                 <th>Caught</th>
                                                 <th>Quantity</th>
@@ -80,14 +63,13 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"] != 1) {
                                                 while ($row = mysqli_fetch_assoc($result)) {
                                                     $exceededBy = $row['quantity'] - $row['catch_limit'];
                                                     $penalty = $exceededBy * $row['fine_rate'];
-                                                    $formattedDate = date('F d, Y', strtotime($row['catch_date'])); // Format the date in PHP
+                                                    $formattedDate = date('F d, Y', strtotime($row['catch_date']));
                                                     echo "<tr>
-                                                            <!-- Removed CRID column -->
                                                             <td>{$row['user_name']}</td>
                                                             <td>{$row['species_name']}</td>
                                                             <td><span style='color: red; font-weight: bold;'>{$row['quantity']}</span> <small class='text-muted'>(exceeded by {$exceededBy})</small></td>
                                                             <td>{$row['size_cm']}</td>
-                                                            <td>{$formattedDate}</td> <!-- Use the formatted date -->
+                                                            <td>{$formattedDate}</td>
                                                             <td>
                                                                 <a href='#' class='text-danger create-violation-btn' 
                                                                     data-crid='{$row['CRID']}' 
@@ -95,8 +77,8 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"] != 1) {
                                                                     data-species='{$row['SID']}' 
                                                                     data-exceeded='{$exceededBy}' 
                                                                     data-penalty='{$penalty}' 
-                                                                    data-date='{$row['catch_date']}'> <!-- Use the raw catch_date -->
-                                                                    <i class='bi bi-exclamation-circle-fill' style='font-size: 1.5rem;'></i> <!-- Larger icon -->
+                                                                    data-date='{$row['catch_date']}'>
+                                                                    <i class='bi bi-exclamation-circle-fill' style='font-size: 1.5rem;'></i>
                                                                 </a>
                                                             </td>
                                                           </tr>";
@@ -109,16 +91,11 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"] != 1) {
                                     </table>
                                 </div>
                             </div>
-
-                            <!-- Violations Tab -->
-                            <div class="tab-pane fade mt-4" id="violations" role="tabpanel"
-                                aria-labelledby="violations-tab">
+                            <div class="tab-pane fade mt-4" id="violations" role="tabpanel" aria-labelledby="violations-tab">
                                 <div class="table-responsive">
-                                    <table id="violationsTable"
-                                        class="table table-striped table-bordered align-middle w-100">
+                                    <table id="violationsTable" class="table table-striped table-bordered align-middle w-100">
                                         <thead>
                                             <tr>
-                                                <!-- Removed ID column -->
                                                 <th>Fisherman</th>
                                                 <th>Caught</th>
                                                 <th>Date</th>
@@ -138,12 +115,11 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"] != 1) {
 
                                             if ($result) {
                                                 while ($row = mysqli_fetch_assoc($result)) {
-                                                    $resolved = (int) $row['resolved']; // Explicitly cast resolved to integer
+                                                    $resolved = (int) $row['resolved'];
                                                     $statusBadge = ($resolved === 1)
                                                         ? "<span class='badge bg-success'>Resolved</span>"
                                                         : "<span class='badge bg-danger'>Unresolved</span>";
                                                     echo "<tr>
-                                                            <!-- Removed ID column -->
                                                             <td>{$row['user_name']}</td>
                                                             <td>" . ($row['species_name'] ?? 'N/A') . "</td>
                                                             <td>{$row['formatted_date']}</td>
@@ -153,7 +129,7 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"] != 1) {
                                                             <td>";
                                                     if ($resolved === 0) {
                                                         echo "<a href='#' class='text-success mark-resolved-btn' data-id='{$row['id']}'>
-                                                                <i class='bi bi-check-circle-fill' style='font-size: 1.5rem;'></i> <!-- Larger icon -->
+                                                                <i class='bi bi-check-circle-fill' style='font-size: 1.5rem;'></i>
                                                               </a>";
                                                     }
                                                     echo "</td>
@@ -170,17 +146,13 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"] != 1) {
                         </div>
                     </div>
                 </div>
-
-                <!-- Violation Modal -->
-                <div class="modal fade" id="violationModal" tabindex="-1" aria-labelledby="violationModalLabel"
-                    aria-hidden="true">
+                <div class="modal fade" id="violationModal" tabindex="-1" aria-labelledby="violationModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <form id="violationForm">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="violationModalLabel">Create Violation</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                     <div class="mb-3">
@@ -197,8 +169,7 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"] != 1) {
                                     </div>
                                     <div class="mb-3">
                                         <label for="violationDescription" class="form-label">Description</label>
-                                        <textarea class="form-control" id="violationDescription" rows="3"
-                                            required></textarea>
+                                        <textarea class="form-control" id="violationDescription" rows="3" required></textarea>
                                     </div>
                                     <div class="mb-3">
                                         <label for="violationPenalty" class="form-label">Penalty</label>
@@ -213,36 +184,19 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"] != 1) {
                         </div>
                     </div>
                 </div>
-
-                <!-- Footer -->
                 <?php include 'layouts/footer.php'; ?>
             </main>
         </div>
     </div>
-
-    <!-- Dark Overlay for Mobile Sidebar -->
     <div class="overlay"></div>
-
-    <!-- Bootstrap 5 JS Bundle with Popper -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-
-    <!-- jQuery Library -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <!-- DataTables JS -->
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
-
-    <!-- SweetAlert2 JS -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <!-- Custom JS -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // Initialize DataTables
             $('#reportsTable').DataTable();
-            
-            // Update the columns configuration for violationsTable
             $('#violationsTable').DataTable({
                 ajax: {
                     url: 'modal/fetch_violations.php',
@@ -259,7 +213,6 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"] != 1) {
                     }
                 },
                 columns: [
-                    // Removed the id column
                     { data: 'user_name' },
                     { data: 'species_name', defaultContent: 'N/A' },
                     { data: 'formatted_date' },
@@ -286,8 +239,6 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"] != 1) {
                     }
                 ]
             });
-
-            // Handle Create Violation Button Click
             $(document).on('click', '.create-violation-btn', function () {
                 const uid = $(this).data('user');
                 const sid = $(this).data('species');
@@ -303,8 +254,6 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"] != 1) {
 
                 $('#violationModal').modal('show');
             });
-
-            // Handle Violation Form Submission
             $('#violationForm').on('submit', function (e) {
                 e.preventDefault();
                 const data = {
@@ -335,8 +284,6 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"] != 1) {
                     }
                 });
             });
-
-            // Handle Mark as Resolved Button Click
             $(document).on('click', '.mark-resolved-btn', function () {
                 const violationId = $(this).data('id');
 

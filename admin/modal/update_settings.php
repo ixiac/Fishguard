@@ -7,7 +7,7 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"] != 1) {
 
 include '../../assets/db.php';
 
-$user_id = $_SESSION['UID']; // Assuming UID is stored in session
+$user_id = $_SESSION['UID'];
 $username = $_POST['username'] ?? '';
 $password = !empty($_POST['password']) ? password_hash($_POST['password'], PASSWORD_DEFAULT) : null;
 $name = $_POST['name'] ?? '';

@@ -8,7 +8,6 @@ if (!isset($_SESSION['UID'])) {
 
 include '../assets/db.php';
 
-// Fetch user data
 $uid = $_SESSION['UID'];
 
 // Fetch summary data
@@ -32,11 +31,6 @@ $stmt = $conn->prepare($pendingPenaltyQuery);
 $stmt->bind_param("i", $uid);
 $stmt->execute();
 $totalPendingPenalty = $stmt->get_result()->fetch_assoc()['total_pending_penalty'] ?? 0;
-
-// Pagination setup
-$itemsPerPage = 10;
-$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-$offset = ($page - 1) * $itemsPerPage;
 
 // Fetch catch reports
 $catchReportsQuery = "SELECT cr.CRID, s.name AS species_name, cr.quantity, cr.size_cm, cr.catch_date 

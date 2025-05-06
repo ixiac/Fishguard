@@ -1,9 +1,8 @@
 <?php
-session_start(); // Ensure the session is started
+session_start();
 
-// Check if UID is set in the session
 if (!isset($_SESSION['UID'])) {
-    header("Location: ../login.php"); // Redirect to login if UID is not set
+    header("Location: ../login.php");
     exit();
 }
 
