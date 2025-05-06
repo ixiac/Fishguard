@@ -43,10 +43,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username"], $_POST["pa
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FishGuard - Smart Fishing Regulation System</title>
+    <link rel="icon" href="assets/img/logo.png" type="image/png">
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/index.css">
@@ -61,7 +63,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username"], $_POST["pa
                     <img src="assets/img/navlogo.png" alt="FishGuard Logo" width="50" height="50" class="me-2">
                     <span class="fs-4">Fish<span class="text-primary">Guard</span></span>
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
@@ -79,7 +82,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username"], $_POST["pa
                             <a class="nav-link" href="#contact">Contact</a>
                         </li>
                     </ul>
-                    <button class="btn btn-warning fw-bold" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+                    <button class="btn btn-warning fw-bold" data-bs-toggle="modal"
+                        data-bs-target="#loginModal">Login</button>
                 </div>
             </div>
         </nav>
@@ -104,14 +108,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username"], $_POST["pa
                             <label for="loginUsername" class="form-label">Username</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="bi bi-person"></i></span>
-                                <input type="text" class="form-control" id="loginUsername" name="username" placeholder="Enter your username" required>
+                                <input type="text" class="form-control" id="loginUsername" name="username"
+                                    placeholder="Enter your username" required>
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="loginPassword" class="form-label">Password</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="bi bi-key"></i></span>
-                                <input type="password" class="form-control" id="loginPassword" name="password" placeholder="Enter your password" required>
+                                <input type="password" class="form-control" id="loginPassword" name="password"
+                                    placeholder="Enter your password" required>
                             </div>
                         </div>
                         <div class="login-options">
@@ -165,26 +171,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username"], $_POST["pa
                             <label for="registerEmail" class="form-label">Email address</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-                                <input type="email" class="form-control" id="registerEmail" placeholder="name@example.com">
+                                <input type="email" class="form-control" id="registerEmail"
+                                    placeholder="name@example.com">
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="registerPassword" class="form-label">Password</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="bi bi-key"></i></span>
-                                <input type="password" class="form-control" id="registerPassword" placeholder="Create a password">
+                                <input type="password" class="form-control" id="registerPassword"
+                                    placeholder="Create a password">
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="confirmPassword" class="form-label">Confirm Password</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="bi bi-key-fill"></i></span>
-                                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password">
+                                <input type="password" class="form-control" id="confirmPassword"
+                                    placeholder="Confirm your password">
                             </div>
                         </div>
                         <div class="mb-3 form-check">
                             <input type="checkbox" class="form-check-input" id="termsCheck">
-                            <label class="form-check-label" for="termsCheck">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+                            <label class="form-check-label" for="termsCheck">I agree to the <a href="#">Terms of
+                                    Service</a> and <a href="#">Privacy Policy</a></label>
                         </div>
                         <button type="submit" class="btn btn-primary w-100">Create Account</button>
                     </form>
@@ -207,7 +217,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username"], $_POST["pa
 
                     <div class="text-center mt-4">
                         <p class="mb-0">Already have an account?</p>
-                        <button class="btn btn-warning mt-2" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss="modal">Login</button>
+                        <button class="btn btn-warning mt-2" data-bs-toggle="modal" data-bs-target="#loginModal"
+                            data-bs-dismiss="modal">Login</button>
                     </div>
                 </div>
             </div>
@@ -220,7 +231,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username"], $_POST["pa
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <h1 class="display-4 mb-4">Simplify Fishing Compliance with FishGuard</h1>
-                    <p class="lead mb-5">The all-in-one solution for anglers and regulatory agencies to monitor, manage, and maintain sustainable fishing practices.</p>
+                    <p class="lead mb-5">The all-in-one solution for anglers and regulatory agencies to monitor, manage,
+                        and maintain sustainable fishing practices.</p>
                     <button class="btn btn-warning btn-lg px-5 fw-bold">Get Started</button>
                 </div>
             </div>
@@ -241,7 +253,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username"], $_POST["pa
                                 <i class="bi bi-check-circle-fill"></i>
                             </div>
                             <h3 class="h4 text-primary mb-3">Lorem ipsum dolor sit amet</h3>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua.</p>
                         </div>
                     </div>
                 </div>
@@ -252,7 +265,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username"], $_POST["pa
                                 <i class="bi bi-geo-alt-fill"></i>
                             </div>
                             <h3 class="h4 text-primary mb-3">Lorem ipsum dolor sit amet</h3>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua.</p>
                         </div>
                     </div>
                 </div>
@@ -263,7 +277,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username"], $_POST["pa
                                 <i class="bi bi-bar-chart-fill"></i>
                             </div>
                             <h3 class="h4 text-primary mb-3">Lorem ipsum dolor sit amet</h3>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua.</p>
                         </div>
                     </div>
                 </div>
@@ -282,28 +297,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username"], $_POST["pa
                     <div class="d-flex flex-column align-items-center">
                         <div class="step-number">1</div>
                         <h3 class="h5 mb-3">Lorem ipsum dolor sit amet</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua.</p>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="d-flex flex-column align-items-center">
                         <div class="step-number">2</div>
                         <h3 class="h5 mb-3">Lorem ipsum dolor sit amet</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua.</p>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="d-flex flex-column align-items-center">
                         <div class="step-number">3</div>
                         <h3 class="h5 mb-3">Lorem ipsum dolor sit amet</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua.</p>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="d-flex flex-column align-items-center">
                         <div class="step-number">4</div>
                         <h3 class="h5 mb-3">Lorem ipsum dolor sit amet</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua.</p>
                     </div>
                 </div>
             </div>
@@ -320,7 +339,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username"], $_POST["pa
                 <div class="col-lg-4">
                     <div class="card h-100 shadow">
                         <div class="card-body p-4">
-                            <p class="card-text fst-italic mb-4">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
+                            <p class="card-text fst-italic mb-4">"Lorem ipsum dolor sit amet, consectetur adipiscing
+                                elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
                             <div class="d-flex align-items-center">
                                 <div class="testimonial-avatar">
                                     <img src="/api/placeholder/50/50" alt="James Wilson" class="img-fluid">
@@ -336,7 +356,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username"], $_POST["pa
                 <div class="col-lg-4">
                     <div class="card h-100 shadow">
                         <div class="card-body p-4">
-                            <p class="card-text fst-italic mb-4">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
+                            <p class="card-text fst-italic mb-4">"Lorem ipsum dolor sit amet, consectetur adipiscing
+                                elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
                             <div class="d-flex align-items-center">
                                 <div class="testimonial-avatar">
                                     <img src="/api/placeholder/50/50" alt="Maria Rodriguez" class="img-fluid">
@@ -352,7 +373,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username"], $_POST["pa
                 <div class="col-lg-4">
                     <div class="card h-100 shadow">
                         <div class="card-body p-4">
-                            <p class="card-text fst-italic mb-4">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
+                            <p class="card-text fst-italic mb-4">"Lorem ipsum dolor sit amet, consectetur adipiscing
+                                elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
                             <div class="d-flex align-items-center">
                                 <div class="testimonial-avatar">
                                     <img src="/api/placeholder/50/50" alt="Dr. Robert Chen" class="img-fluid">
@@ -394,7 +416,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username"], $_POST["pa
                                 </div>
                                 <div class="mb-3">
                                     <label for="message" class="form-label">Message</label>
-                                    <textarea class="form-control" id="message" rows="4" placeholder="Your Message"></textarea>
+                                    <textarea class="form-control" id="message" rows="4"
+                                        placeholder="Your Message"></textarea>
                                 </div>
                                 <button type="submit" class="btn btn-warning fw-bold w-100">Send Message</button>
                             </form>
@@ -410,7 +433,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username"], $_POST["pa
             <div class="row g-4">
                 <div class="col-lg-4">
                     <h3 class="h5 text-warning mb-3">FishGuard</h3>
-                    <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+                        incididunt ut labore et dolore magna aliqua.</p>
                     <div class="d-flex gap-2">
                         <a href="#" class="social-link">
                             <i class="bi bi-google"></i>
@@ -430,8 +454,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username"], $_POST["pa
                     <h3 class="h5 text-warning mb-3">Quick Links</h3>
                     <ul class="list-unstyled">
                         <li class="mb-2"><a href="#features" class="text-white text-decoration-none">Features</a></li>
-                        <li class="mb-2"><a href="#how-it-works" class="text-white text-decoration-none">How It Works</a></li>
-                        <li class="mb-2"><a href="#testimonials" class="text-white text-decoration-none">Testimonials</a></li>
+                        <li class="mb-2"><a href="#how-it-works" class="text-white text-decoration-none">How It
+                                Works</a></li>
+                        <li class="mb-2"><a href="#testimonials"
+                                class="text-white text-decoration-none">Testimonials</a></li>
                         <li class="mb-2"><a href="#pricing" class="text-white text-decoration-none">Pricing</a></li>
                     </ul>
                 </div>
@@ -460,9 +486,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username"], $_POST["pa
                 </div>
             </div>
             <hr class="my-4 bg-light opacity-25">
-            <div class="text-center"></div></div>
-                <p class="mb-0">&copy; 2025 FishGuard. All rights reserved.</p>
-            </div>
+            <div class="text-center"></div>
+        </div>
+        <p class="mb-0">&copy; 2025 FishGuard. All rights reserved.</p>
+        </div>
         </div>
     </footer>
 
@@ -472,14 +499,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username"], $_POST["pa
     <!-- Script to handle modal switching -->
     <script>
         // This script handles toggling between login and register modals
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Get references to modals
             const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
             const registerModal = new bootstrap.Modal(document.getElementById('registerModal'));
 
             // Listen for clicks on "Register Now" button in login modal
             document.querySelectorAll('[data-bs-target="#registerModal"]').forEach(button => {
-                button.addEventListener('click', function() {
+                button.addEventListener('click', function () {
                     loginModal.hide();
                     setTimeout(() => {
                         registerModal.show();
@@ -489,7 +516,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username"], $_POST["pa
 
             // Listen for clicks on "Login" button in register modal
             document.querySelectorAll('[data-bs-target="#loginModal"]').forEach(button => {
-                button.addEventListener('click', function() {
+                button.addEventListener('click', function () {
                     registerModal.hide();
                     setTimeout(() => {
                         loginModal.show();
@@ -498,7 +525,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username"], $_POST["pa
             });
 
             // Update hero section button to open login modal
-            document.querySelector('.hero .btn-warning').addEventListener('click', function() {
+            document.querySelector('.hero .btn-warning').addEventListener('click', function () {
                 loginModal.show();
             });
         });
@@ -506,4 +533,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username"], $_POST["pa
 </body>
 
 </html>
-

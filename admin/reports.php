@@ -127,7 +127,7 @@ $species = $conn->query("SELECT SID, name FROM species");
                 class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2">Reports</h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                    <button type="button" class="btn btn-warning" data-bs-toggle="modal"
                         data-bs-target="#addReportModal">
                         Add New Report
                     </button>
@@ -180,8 +180,8 @@ $species = $conn->query("SELECT SID, name FROM species");
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Save Report</button>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-success">Save Report</button>
                             </div>
                         </form>
                     </div>
@@ -217,8 +217,8 @@ $species = $conn->query("SELECT SID, name FROM species");
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Update Report</button>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-success">Update Report</button>
                             </div>
                         </form>
                     </div>

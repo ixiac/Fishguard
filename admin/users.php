@@ -30,7 +30,7 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"] != 1) {
                 <div
                     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="h2">Users</h1>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserModal">
+                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#addUserModal">
                         Add New User
                     </button>
                 </div>
@@ -245,9 +245,8 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"] != 1) {
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-success">Save Changes</button>
                                 </div>
                             </form>
                         </div>
@@ -301,9 +300,8 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"] != 1) {
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Add User</button>
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-success">Add User</button>
                                 </div>
                             </form>
                         </div>
